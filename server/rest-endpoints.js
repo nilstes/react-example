@@ -3,6 +3,7 @@ module.exports = function(app, loggedIn) {
   var mysql = require('mysql');
   var bodyParser = require('body-parser');
   app.use(bodyParser.json()); // for parsing application/json
+  var loggedIn = require('./logged-in.js');
 
   var pool = mysql.createPool({
     connectionLimit : 2, // maks antall koblinger
@@ -13,7 +14,7 @@ module.exports = function(app, loggedIn) {
     debug    :  false
   });
 
-  app.get('/person', function (req, res) {
+  app.get('/person', loggedIn, function (req, res) {
     console.log('Got GET request');
       pool.getConnection(function(err, connection) {
       if (err) {
@@ -36,7 +37,7 @@ module.exports = function(app, loggedIn) {
     });
   });
 
-  app.post('/person', function (req, res) {
+  app.post('/person', loggedIn, function (req, res) {
     console.log('Got POST request');
     pool.getConnection(function(err, connection) {
       if (err) {
