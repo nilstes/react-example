@@ -8,7 +8,7 @@ module.exports = function(app, loggedIn) {
     connectionLimit : 2, // maks antall koblinger
     host     : 'mysql.stud.iie.ntnu.no',
     user     : 'nilstesd',
-    password : '*******',
+    password : '********',
     database : 'nilstesd',
     debug    :  false
   });
