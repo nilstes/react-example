@@ -24,7 +24,7 @@ module.exports = function(app, loggedIn) {
       }
       console.log('Connected to database...');
 
-      connection.query("select * from person", function(err, rows) {
+      connection.query("select navn,adresse,alder from person", function(err, rows) {
         connection.release(); // Legg tilbake i pool
         if(!err) {
           console.log(rows);
